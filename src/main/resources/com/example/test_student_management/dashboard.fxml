@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.test_student_management.controller.DashboardController"
+            styleClass="root-pane">
+
+    <!-- TOP NAV -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="navbar">
+            <padding><Insets top="14" right="20" bottom="14" left="20"/></padding>
+            <Label text="📚 SMS" styleClass="nav-brand"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" styleClass="nav-user"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="btn-outline"/>
+        </HBox>
+    </top>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <VBox spacing="16">
+            <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+
+            <!-- STATS ROW -->
+            <HBox spacing="16">
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                    <padding><Insets top="16" right="20" bottom="16" left="20"/></padding>
+                    <Label fx:id="totalStudentsLabel" text="Total Students: —" styleClass="stat-value"/>
+                    <Label text="Enrolled Students" styleClass="stat-label"/>
+                </VBox>
+            </HBox>
+
+            <!-- SEARCH + ACTIONS -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="searchField" promptText="Search by name, student no, or course..."
+                           styleClass="text-input" HBox.hgrow="ALWAYS"
+                           onAction="#handleSearch"/>
+                <Button text="Search" onAction="#handleSearch" styleClass="btn-primary"/>
+                <Button text="Clear" onAction="#handleClearSearch" styleClass="btn-outline"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="+ Add Student" onAction="#handleAddStudent" styleClass="btn-success"/>
+                <Button text="✏ Edit" onAction="#handleEdit" styleClass="btn-warning"/>
+                <Button text="🗑 Delete" onAction="#handleDelete" styleClass="btn-danger"/>
+            </HBox>
+
+            <!-- TABLE -->
+            <TableView fx:id="studentTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="colStudentNo" text="Student No." prefWidth="110"/>
+                    <TableColumn fx:id="colFirstName" text="First Name" prefWidth="110"/>
+                    <TableColumn fx:id="colLastName" text="Last Name" prefWidth="110"/>
+                    <TableColumn fx:id="colCourse" text="Course" prefWidth="90"/>
+                    <TableColumn fx:id="colYear" text="Year" prefWidth="60"/>
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
+                    <TableColumn fx:id="colPhone" text="Phone" prefWidth="120"/>
+                </columns>
+                <placeholder>
+                    <Label text="No students found." style="-fx-text-fill: #999;"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>
